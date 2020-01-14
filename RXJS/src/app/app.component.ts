@@ -58,6 +58,35 @@ export class AppComponent implements OnInit {
     });
   }
 
+  usuarioObservable(nome: string, email: string): Observable<Usuario> {
+    return new Observable(subscriber => {
+      if (nome === 'Admin') {
+        let usuario = new Usuario(nome, email);
+        setTimeout(() => {
+          subscriber.next(usuario); // O next devolve o dado no formato informado; devevole o objeto que foi informado, que é o tipo da Observable que vc está trabalhando;
+        }, 1000);
+
+        setTimeout(() => {
+          subscriber.next(usuario);
+        }, 1000);
+
+        setTimeout(() => {
+          subscriber.next(usuario);
+        }, 3000);
+
+        setTimeout(() => {
+          subscriber.next(usuario);
+        }, 4000);
+
+        setTimeout(() => {
+          subscriber.complete();
+        }, 5000);
+      } else {
+        subscriber.error('Ops! Deu erro!');
+      }
+    });
+  }
+
   ngOnInit(): void {
     // this.minhaPromise('Henrique')
     // .then(result => console.log(result));
@@ -66,11 +95,11 @@ export class AppComponent implements OnInit {
     // .then(result => console.log(result))
     // .catch(erro => console.log(erro));
 
-    this.minhaObservable('Henrique')
-      .subscribe(
-        result => console.log(result),
-        erro => console.log(erro),
-        () => console.log('FIM!'));
+    // this.minhaObservable('Henrique')
+    //   .subscribe(
+    //     result => console.log(result),
+    //     erro => console.log(erro),
+    //     () => console.log('FIM!'));
 
     const observer = {
       // next: valor => this.escrever(valor),
@@ -79,12 +108,33 @@ export class AppComponent implements OnInit {
       complete: () => console.log('FIM!')
     }
 
-    const obs = this.minhaObservable('Henrique');
-    obs.subscribe(observer);
+    // const obs = this.minhaObservable('Henrique');
+    // obs.subscribe(observer);
+    
+    const obs = this.usuarioObservable('Admin', 'admin@admin.com');
+    const subs = obs.subscribe(observer);
+
+    // após 3 segundos e meio irá cancelar essa subscription;
+    // quando cancela não significa que está chamando o complete; o complete é a subscription por conta própria falou que acabou, o unsubscribe
+    // diz que não quer receber mais nada desse canal;
+    setTimeout(() => {
+      subs.unsubscribe();
+      console.log('Conexão fechada: ' + subs.closed);
+    }, 3500);
   }
 
   escrever(texto: string) {
     console.log(texto);
   }
+}
 
+export class Usuario {
+
+  constructor(nome: string, email: string) {
+    this.nome = nome;
+    this.email = email;
+  }
+
+  nome: string;
+  email: string;
 }
