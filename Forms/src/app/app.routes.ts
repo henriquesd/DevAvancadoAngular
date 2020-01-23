@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './navegacao/home/home.component';
 import { SobreComponent } from './institucional/sobre/sobre.component';
 import { CadastroComponent } from './demos/reactiveForms/cadastro/cadastro.component';
+import { NotFoundComponent } from './navegacao/not-found/not-found.component';
 
 export const rootRouterConfig: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -12,7 +13,11 @@ export const rootRouterConfig: Routes = [
     // o componente está dentro do módulo; para chamar o módulo está configurado usando lazy loading (recomendado) \/;
     { path: 'produtos',
             loadChildren: () => import('./demos/arquitetura-componentes/produto.module')
-            .then(m => m.ProdutoModule)} 
+            .then(m => m.ProdutoModule)},
+    
+    // esta configuração sempre deve vir por último \/;
+    { path: '**', component: NotFoundComponent },
+
 ];
 
 @NgModule({
