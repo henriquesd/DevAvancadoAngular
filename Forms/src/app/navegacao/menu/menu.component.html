@@ -7,10 +7,17 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" [routerLink]="['/home']">Home</a>
+
+          <li class="nav-item" *ngFor="let item of nav">
+            <a class="nav-link" [routerLink]="item.link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: item.exact }">
+                {{ item.name }}
+            </a>
           </li>
 
+
+          <!-- <li class="nav-item">
+            <a class="nav-link" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" [routerLink]="['/home']">Home</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" [routerLink]="['/cadastro']">Cadastro</a>
           </li>
@@ -19,7 +26,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" [routerLink]="['/produtos']">Produtos</a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
