@@ -32,7 +32,11 @@ import { NavegacaoModule } from './navegacao/navegacao.module';
     AppRoutingModule
   ],
   providers: [
-    {provide: APP_BASE_HREF, useValue: '/'}
+    // aqui diz que link básico começa com a barra; então ele entende que tudo da barra do domínio para >, é sua base de navegação,
+    //  e quando você tem essa sub-rotas ele acaba não entendendo para montar o caminho exato dos recursos do Angular para você baixar via JavaScript;
+    //  para resolver isso pode declarar a base de outra forma, adicionado no index.html o '<base href="/">' logo abaixo do head; você estará dizendo
+    //  quase a mesma coisa, só que você não vai criar aquela limitação;
+    // {provide: APP_BASE_HREF, useValue: '/'} 
   ],
   bootstrap: [AppComponent]
 })
