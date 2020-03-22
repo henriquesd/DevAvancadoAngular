@@ -22,7 +22,9 @@ export const rootRouterConfig: Routes = [
 
 @NgModule({
     imports:[
-        RouterModule.forRoot(rootRouterConfig)
+        // não deixar ativado o enableTracing em produção (isso deixa o console um pouco carregado),
+        // use apenas para alguma investigação, para entender algum comportamento; para produção deixe como false;
+        RouterModule.forRoot(rootRouterConfig, { enableTracing: true })
     ],
     exports: [
         RouterModule
