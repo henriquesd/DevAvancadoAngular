@@ -24,7 +24,7 @@ export const rootRouterConfig: Routes = [
     imports:[
         // não deixar ativado o enableTracing em produção (isso deixa o console um pouco carregado),
         // use apenas para alguma investigação, para entender algum comportamento; para produção deixe como false;
-        RouterModule.forRoot(rootRouterConfig, { enableTracing: true })
+        RouterModule.forRoot(rootRouterConfig, { enableTracing: false })
     ],
     exports: [
         RouterModule
