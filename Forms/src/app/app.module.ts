@@ -13,6 +13,7 @@ import { SobreComponent } from './institucional/sobre/sobre.component';
 import { rootRouterConfig, AppRoutingModule } from './app.routes';
 import { CadastroComponent } from './demos/reactiveForms/cadastro/cadastro.component';
 import { NavegacaoModule } from './navegacao/navegacao.module';
+import { AuthGuard } from './services/app.guard';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { NavegacaoModule } from './navegacao/navegacao.module';
     AppRoutingModule
   ],
   providers: [
+    AuthGuard
     // aqui diz que link básico começa com a barra; então ele entende que tudo da barra do domínio para >, é sua base de navegação,
     //  e quando você tem essa sub-rotas ele acaba não entendendo para montar o caminho exato dos recursos do Angular para você baixar via JavaScript;
     //  para resolver isso pode declarar a base de outra forma, adicionado no index.html o '<base href="/">' logo abaixo do head; você estará dizendo
