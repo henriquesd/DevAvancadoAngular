@@ -1,19 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Filme } from './filme';
+import { ImageFormaterPipe } from './image.pipe';
 
 @Component({
   selector: 'app-filmes',
   templateUrl: './filmes.component.html',
+  // O recomendado é usar sempre no módulo, porque no módulo ele vai gerenciar
+  // essa injeção de dependência para o módulo, aqui a injeção de dependência está sendo
+  // gerenciada apenas para o componente, então se você fizer isso em vários componentes
+  // vai acontecer que você vai ter um custo mais elevado de alocação de memória;
+  // \/
   providers: [
-    
+    ImageFormaterPipe
   ]
 })
 export class FilmesComponent implements OnInit {
 
   filmes: Filme[];
+  // Pipe Providers;
   mapped: Filme[];
 
-  constructor() { }
+  constructor(private imageFormat: ImageFormaterPipe) { }
 
   ngOnInit() {
 
@@ -55,13 +62,14 @@ export class FilmesComponent implements OnInit {
       }
     ];
 
+    // Pipe Providers;
     this.mapped = this.filmes.map(filme => {
       return {
         nome: filme.nome,
         dataLancamento: filme.dataLancamento,
         valor: filme.valor,
         tamanho: filme.tamanho,
-        imagem: filme.imagem
+        imagem: this.imageFormat.transform(filme.imagem, 'default', true)
       }
     });
   }
