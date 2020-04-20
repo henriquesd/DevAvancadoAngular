@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BarModule } from './demos/bar-di-zones/bar.module';
 import { BarServices } from './demos/bar-di-zones/bar.service';
 import { Provider } from '@angular/compiler/src/compiler_facade_interface';
+import { BAR_UNIDADE_CONFIG } from './demos/bar-di-zones/bar.config';
 
 export const BAR_PROVIDERS: Provider[] = [
   BarServices
@@ -53,7 +54,10 @@ export const BAR_PROVIDERS: Provider[] = [
     CustomFormsModule,
     //[RouterModule.forRoot(rootRouterConfig, { useHash: false})]
     AppRoutingModule,
-    BarModule
+    BarModule.forRoot({
+      unidadeId: 1000,
+      unidadeToken: 'eca938c99a0e9ff91029dc'
+    })
   ],
   providers: [
     AuthGuard,
@@ -64,6 +68,7 @@ export const BAR_PROVIDERS: Provider[] = [
     //  quase a mesma coisa, só que você não vai criar aquela limitação;
     // {provide: APP_BASE_HREF, useValue: '/'} 
     // BAR_PROVIDERS
+    // { provide: BAR_UNIDADE_CONFIG, useValue: config }
   ],
   bootstrap: [AppComponent]
 })
