@@ -44,3 +44,28 @@ https://www.npmjs.com/package/ng2-validation
 ```
 npm i ng2-validation
 ```
+
+---------------------------------------------------------------------------------------------------------
+
+## Para simular um back-end:
+
+### Instale o JSON Server:
+```
+npm install -g json-server
+```
+
+### Navegue para:
+```
+cd src\app\demos\todo-list
+```
+
+### Execute:
+```
+json-server todo.db.json
+```
+
+### Acesse:
+```
+http://localhost:3000/
+http://localhost:3000/todolist
+```

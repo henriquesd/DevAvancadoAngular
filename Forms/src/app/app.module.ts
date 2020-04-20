@@ -27,6 +27,7 @@ import { BarModule } from './demos/bar-di-zones/bar.module';
 import { BarServices } from './demos/bar-di-zones/bar.service';
 import { Provider } from '@angular/compiler/src/compiler_facade_interface';
 import { BAR_UNIDADE_CONFIG } from './demos/bar-di-zones/bar.config';
+import { TodoModule } from './demos/todo-list/todo.module';
 
 export const BAR_PROVIDERS: Provider[] = [
   BarServices
@@ -57,7 +58,8 @@ export const BAR_PROVIDERS: Provider[] = [
     BarModule.forRoot({
       unidadeId: 1000,
       unidadeToken: 'eca938c99a0e9ff91029dc'
-    })
+    }),
+    TodoModule
   ],
   providers: [
     AuthGuard,
