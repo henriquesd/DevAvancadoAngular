@@ -1,5 +1,6 @@
 <div class="tasks">
-    <todo-list>
+    <!-- passando o pipe async para saber que tenho que esperar um callback -->
+    <todo-list [list]="todolist$ | async">
         Tarefas
     </todo-list>
 </div>

@@ -56,7 +56,7 @@ npm install -g json-server
 
 ### Navegue para:
 ```
-cd src\app\demos\todo-list
+cd Forms\src\app\demos\todo-list
 ```
 
 ### Execute:
