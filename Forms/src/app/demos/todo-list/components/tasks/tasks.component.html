@@ -1,6 +1,6 @@
 <div class="tasks">
     <!-- passando o pipe async para saber que tenho que esperar um callback -->
-    <todo-list [list]="todolist$ | async">
+    <todo-list [list]="todolist$ | async" (toggle)="onToggle($event)">
         Tarefas
     </todo-list>
 </div>
