@@ -76,7 +76,19 @@ export class CadastroComponent implements OnInit, AfterViewInit {
       // nomenclatura da documentação do seu back end (conforme vemos no swagger);
       this.usuario = Object.assign({}, this.usuario, this.cadastroForm.value);
     
-      this.contaService.registrarUsuario(this.usuario);
+      this.contaService.registrarUsuario(this.usuario)
+        .subscribe(
+          sucesso => {this.processarSucesso(sucesso)},
+          falha => {this.processarSucesso(falha)}
+        );
     }
+  }
+
+  processarSucesso(response: any) {
+
+  }
+
+  processarFalha(fail: any) {
+
   }
 }
